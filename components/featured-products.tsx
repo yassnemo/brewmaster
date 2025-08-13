@@ -1,42 +1,16 @@
-import { Star, Coffee, Cookie, Sandwich } from "lucide-react"
+"use client"
+
+import { Star, Coffee } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { products, formatPrice } from "@/lib/products"
+import { useCart } from "@/components/cart-provider"
 
-const featuredItems = [
-  {
-    id: 1,
-    name: "Signature Espresso Blend",
-    description: "Rich, full-bodied espresso with notes of chocolate and caramel",
-    price: "$4.50",
-    rating: 4.9,
-    image: "/espresso-cup-beans.png",
-    icon: Coffee,
-    category: "Coffee",
-  },
-  {
-    id: 2,
-    name: "Artisan Croissant",
-    description: "Buttery, flaky pastry baked fresh daily with premium French butter",
-    price: "$3.25",
-    rating: 4.7,
-    image: "/golden-croissant.png",
-    icon: Cookie,
-    category: "Pastry",
-  },
-  {
-    id: 3,
-    name: "Gourmet Breakfast Sandwich",
-    description: "Farm-fresh eggs, artisan cheese, and premium bacon on sourdough",
-    price: "$8.95",
-    rating: 4.8,
-    image: "/placeholder-wl4pl.png",
-    icon: Sandwich,
-    category: "Food",
-  },
-]
+const featuredItems = products
 
 export function FeaturedProducts() {
+  const { addItem } = useCart()
   return (
     <section id="menu" className="py-12 md:py-16 bg-white" aria-labelledby="featured-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -65,12 +39,12 @@ export function FeaturedProducts() {
                   className="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-3 md:top-4 left-3 md:left-4 bg-white/90 backdrop-blur-sm rounded-full px-2 md:px-3 py-1 flex items-center gap-1">
-                  <item.icon className="h-3 w-3 text-amber-600" />
+                  <Coffee className="h-3 w-3 text-amber-600" />
                   <span className="text-xs font-medium text-amber-800">{item.category}</span>
                 </div>
                 <div className="absolute top-3 md:top-4 right-3 md:right-4 bg-amber-600 text-white rounded-full px-2 py-1 flex items-center gap-1">
                   <Star className="h-3 w-3 fill-current" />
-                  <span className="text-xs font-medium">{item.rating}</span>
+                  <span className="text-xs font-medium">4.8</span>
                 </div>
               </div>
 
@@ -83,11 +57,12 @@ export function FeaturedProducts() {
                 </div>
 
                 <div className="flex items-center justify-between pt-2">
-                  <span className="text-xl md:text-2xl font-bold text-amber-600">{item.price}</span>
+                  <span className="text-xl md:text-2xl font-bold text-amber-600">{formatPrice(item.priceCents)}</span>
                   <Button
                     size="sm"
                     className="bg-amber-600 hover:bg-amber-700 text-white transition-all duration-200 hover:shadow-md"
                     aria-label={`Add ${item.name} to order`}
+                    onClick={() => addItem(item)}
                   >
                     Add to Order
                   </Button>
@@ -99,12 +74,13 @@ export function FeaturedProducts() {
 
         <div className="text-center mt-8 md:mt-12">
           <Button
+            asChild
             size="lg"
             variant="outline"
             className="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition-all duration-300 bg-transparent"
             aria-label="View complete menu"
           >
-            View Full Menu
+            <a href="/menu">View Full Menu</a>
           </Button>
         </div>
       </div>
