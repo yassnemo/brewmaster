@@ -1,6 +1,7 @@
 import { ArrowRight, Coffee, Heart, Leaf } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
@@ -45,21 +46,25 @@ export function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
+                asChild
                 size="lg"
                 className="bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
                 aria-label="Explore our coffee menu"
               >
-                Explore Our Menu
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <Link href="/menu">
+                  Explore Our Menu
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
 
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition-all duration-300 bg-transparent"
                 aria-label="Learn more about our story"
               >
-                Our Story
+                <a href="#about">Our Story</a>
               </Button>
             </div>
 
