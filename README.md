@@ -1,4 +1,4 @@
-# Coffee Shop (Next.js + Tailwind)
+# BrewMaster (Next.js + Tailwind)
 
 A sleek, responsive coffee shop landing site built with Next.js, React, Tailwind CSS, and Radix UI components.
 
