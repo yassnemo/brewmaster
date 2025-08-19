@@ -2,13 +2,6 @@
 
 A sleek, responsive coffee shop landing site built with Next.js, React, Tailwind CSS, and Radix UI components.
 
-## Tech Stack
-- Next.js 15
-- React 19
-- Tailwind CSS 3
-- Radix UI + shadcn/ui-style components
-- TypeScript
-
 ## Quick Start
 
 ```bash
@@ -38,3 +31,4 @@ App runs on http://localhost:3000 by default.
 
 ## License
 MIT
+
